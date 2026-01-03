@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Kỹ Thuật Số - Phạm Bá Hưng</title>
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --primary-color: #003366; /* Màu xanh đậm kỹ thuật/VNU */
+            --accent-color: #FF9900; /* Màu cam nổi bật */
+            --bg-light: #f4f7f6;
+            --text-dark: #333;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #00509E);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .subtitle { font-size: 1.2rem; opacity: 0.9; }
+
+        nav {
+            background-color: #002244;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        /* Sections */
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        /* About Me */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .profile-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        /* Project Cards */
+        .project-card {
+            background: var(--white);
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .badge {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Styles cho Nút Sản Phẩm (MỚI THÊM) */
+        .btn-product {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+            font-weight: bold;
+            border: 1px solid var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .btn-product:hover {
+            background-color: var(--white);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            box-shadow: 0 2px 8px rgba(0,51,102,0.2);
+        }
+
+        /* Styles cho Ảnh Poster */
+        .poster-landscape {
+            width: 100%;
+            max-width: 850px;
+            height: auto;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            display: block;
+            margin: 20px auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .poster-portrait {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            display: block;
+            margin: 20px auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .trust-item {
+            background: #e3f2fd;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .prompt-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #4CAF50;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .comparison-table th { background-color: #f2f2f2; }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr; }
+            nav ul { flex-direction: column; }
+            nav a { text-align: center; }
+            .poster-landscape, .poster-portrait { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>PHẠM BÁ HƯNG</h1>
+            <p class="subtitle">Sinh viên K70 - Khoa học Vật liệu (Công nghệ Bán dẫn)</p>
+            <p>Mã sinh viên: 25000723 | Portfolio Học phần Nhập môn Công nghệ số và trí tuệ nhân tạo</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">Giới thiệu</a></li>
+            <li><a href="#projects">Dự án & Bài tập</a></li>
+            <li><a href="#reflection">Tổng kết</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        
+        <section id="about">
+            <h2>I. Trang Giới thiệu (About Me)</h2>
+            <div class="about-grid">
+                <div class="profile-card">
+                    
+                    <div style="width: 140px; height: 140px; border-radius: 50%; overflow: hidden; margin: 0 auto 1rem; border: 4px solid #003366; position: relative;">
+                        <img src="avatar1.jpg" alt="Phạm Bá Hưng" 
+                             style="width: 100%; height: 100%; object-fit: cover; 
+                                    transform: scale(1.2); 
+                                    transform-origin: 50% 18%;">
+                    </div>
+
+                    <h3>Phạm Bá Hưng</h3>
+                    <p><strong>Lớp:</strong> K70 CNBD1</p>
+                    <p><strong>Ngành:</strong> KHVL-CNBD</p>
+                    <p><strong>Trường:</strong> Đại học Khoa học Tự nhiên - ĐHQGHN</p>
+                </div>
+                <div>
+                    <h3>Mục tiêu Học tập & Định hướng</h3>
+                    <p style="margin-bottom: 15px;">
+                        Là một sinh viên năm nhất ngành khoa học vật liệu định hướng bán dẫn, tôi có niềm đam mê lớn với các khía cạnh kỹ thuật của IoT và quy trình sản xuất vi mạch.
+                    </p>
+                    <p>
+                        <strong>Mục tiêu của Portfolio này:</strong><br>
+                        1. Hệ thống hóa các kỹ năng số đã học (quản lý dữ liệu, tra cứu thông tin, Prompt Engineering, AI sáng tạo).<br>
+                        2. Lưu trữ các sản phẩm học tập liên quan trực tiếp đến chuyên ngành (Bán dẫn & IoT).<br>
+                        3. Thể hiện năng lực ứng dụng AI có trách nhiệm trong nghiên cứu khoa học.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>II. Trang Dự án (Projects)</h2>
+            <p>Tổng hợp 6 bài tập cốt lõi đã hoàn thành trong học phần.</p>
+
+            <article class="project-card" id="bai1">
+                <div class="card-header">
+                    <h3>Bài tập 1: Thao tác cơ bản với tệp tin và thư mục</h3>
+                    <span class="badge">Quản lý dữ liệu</span>
+                </div>
+                <div class="card-body">
+                    <p><strong>Mục tiêu:</strong> Thiết lập cấu trúc lưu trữ khoa học trên máy tính cá nhân để phục vụ việc học tập lâu dài.</p>
+                    <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 15px;">
+                        <div style="flex: 1;">
+                            <h4>Cấu trúc thư mục</h4>
+                            <p>Đã tạo cây thư mục: <code>D:\ThucHanh_PhamBaHung\TaiLieu</code></p>
+                            <img src="bai1-files.png" alt="Ảnh minh họa Bài 1" class="poster-landscape" style="max-width: 100%;">
+                        </div>
+                        <div style="flex: 1;">
+                            <h4>Kỹ năng thực hiện</h4>
+                            <ul>
+                                <li>✅ Tạo thư mục và tệp tin văn bản (Text Document).</li>
+                                <li>✅ Đổi tên tệp tin chuẩn (không dấu, gạch dưới).</li>
+                                <li>✅ Sao chép (Copy), Di chuyển (Cut) dữ liệu giữa các thư mục.</li>
+                                <li>✅ Xóa và khôi phục dữ liệu từ Thùng rác.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="bai1.pdf" class="btn-product" target="_blank">📄 Xem Hướng dẫn chi tiết (PDF)</a>
+                </div>
+            </article>
+
+            <article class="project-card" id="bai2">
+                <div class="card-header">
+                    <h3>Bài tập 2: Tìm kiếm và đánh giá thông tin học thuật</h3>
+                    <span class="badge">Năng lực thông tin</span>
+                </div>
+                <div class="card-body">
+                    <p><strong>Chủ đề nghiên cứu:</strong> Ảnh hưởng của Internet of Things (IoT) đến đời sống thông minh.</p>
+                    <p><strong>Kết quả:</strong> Đã tìm kiếm và đánh giá 11 tài liệu uy tín (IEEE, Sensors Journal, Elsevier...).</p>
+                    
+                    <h4>Bảng đánh giá nguồn tin tiêu biểu (Trích xuất)</h4>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Tên tài liệu</th>
+                                <th>Loại nguồn</th>
+                                <th>Đánh giá độ tin cậy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Internet of Things-IOT (Patel, 2016)</td>
+                                <td>Bài báo tạp chí</td>
+                                <td><strong>Cao:</strong> >7000 trích dẫn, xuất bản quốc tế.</td>
+                            </tr>
+                            <tr>
+                                <td>IoT for Smart Home (Stojkoska, 2017)</td>
+                                <td>Bài báo Elsevier</td>
+                                <td><strong>Cao:</strong> Phân tích sâu về bảo mật, NXB uy tín.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a href="bai2.pdf" class="btn-product" target="_blank">📄 Xem Báo cáo đầy đủ (PDF)</a>
+                </div>
+            </article>
+
+            <article class="project-card" id="bai3">
+                <div class="card-header">
+                    <h3>Bài tập 3: Viết Prompt hiệu quả cho tác vụ học tập</h3>
+                    <span class="badge">Prompt Engineering</span>
+                </div>
+                <div class="card-body">
+                    <p><strong>Công cụ sử dụng:</strong> ChatGPT/Gemini.</p>
+                    <p><strong>Bài học rút ra:</strong> Sử dụng kỹ thuật <em>Role Prompting</em> (Gán vai) và <em>Chain-of-Thought</em> (Chuỗi tư duy) giúp kết quả sâu sắc hơn 80% so với câu lệnh cơ bản.</p>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <h5>❌ Prompt Cơ bản</h5>
+                            <div class="prompt-box">"Tóm tắt quyển CMOS VLSI Design."</div>
+                        </div>
+                        <div>
+                            <h5>✅ Prompt Nâng cao</h5>
+                            <div class="prompt-box">"[Vai trò] Bạn là Kỹ sư thiết kế Vi mạch cao cấp. [Nhiệm vụ] Hãy tóm tắt sách theo 'chuỗi tư duy'..."</div>
+                        </div>
+                    </div>
+                    <a href="bai3.pdf" class="btn-product" target="_blank">📄 Xem Nhật ký Prompt (PDF)</a>
+                </div>
+            </article>
+
+            <article class="project-card" id="bai4">
+                <div class="card-header">
+                    <h3>Bài tập 4: Sử dụng công cụ hợp tác trực tuyến</h3>
+                    <span class="badge">Làm việc nhóm</span>
+                </div>
+                <div class="card-body">
+                    <p><strong>Nhóm thực hiện:</strong> Nhóm 14 (5 thành viên - Họ Phạm & Trần).</p>
+                    <p><strong>Dự án:</strong> "Chiến lược sống sót" và học tốt môn Giải tích 1.</p>
+                    
+                    <div style="display: flex; gap: 20px; align-items: flex-start;">
+                        <div style="flex: 2;">
+                            <img src="bai4.jpg" alt="Minh chứng làm việc nhóm" class="poster-landscape" style="max-width: 100%;">
+                        </div>
+                        <div style="flex: 1;">
+                            <h4>Phân công vai trò</h4>
+                            <ul>
+                                <li><strong>Phạm Bá Hưng:</strong> Nhóm trưởng (Điều phối).</li>
+                                <li><strong>Trần Gia Hưng:</strong> Thư ký.</li>
+                                <li><strong>Phạm Khánh Hưng:</strong> Quản lý thời gian.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="bai4.pdf" class="btn-product" target="_blank">📄 Xem Biên bản họp nhóm (PDF)</a>
+                </div>
+            </article>
+
+            <article class="project-card" id="bai5">
+                <div class="card-header">
+                    <h3>Bài tập 5: Sử dụng AI tạo sinh hỗ trợ sáng tạo nội dung</h3>
+                    <span class="badge">Generative AI</span>
+                </div>
+                <div class="card-body">
+                    <p><strong>Sản phẩm:</strong> Infographic "Quy trình sản xuất Chip Bán dẫn (5 bước cốt lõi)".</p>
+                    <p><strong>Công cụ:</strong> ChatGPT-4o + Midjourney + Canva.</p>
+
+                    <img src="infographic-chip.png" 
+                         alt="Infographic Quy trình sản xuất Chip Bán dẫn" 
+                         class="poster-landscape">
+                    
+                    <a href="bai5.pdf" class="btn-product" target="_blank">📄 Xem Báo cáo Quy trình làm việc (PDF)</a>
+                </div>
+            </article>
+
+            <article class="project-card" id="bai6">
+                <div class="card-header">
+                    <h3>Bài tập 6: Sử dụng AI có trách nhiệm trong học thuật</h3>
+                    <span class="badge">Đạo đức AI</span>
+                </div>
+                <div class="card-body">
+                    <p><strong>Vấn đề:</strong> Ranh giới giữa hỗ trợ hợp lý và gian lận học thuật khi dùng AI.</p>
+                    <p><strong>Giải pháp:</strong> Xây dựng bộ quy tắc cá nhân <strong>TRUST</strong>.</p>
+                    
+                    <div class="trust-grid">
+                        <div class="trust-item">T - Transparency</div>
+                        <div class="trust-item">R - Responsibility</div>
+                        <div class="trust-item">U - Understanding</div>
+                        <div class="trust-item">S - Skepticism</div>
+                        <div class="trust-item">T - Tool</div>
+                    </div>
+
+                    <img src="infographic-ai.png" 
+                         alt="Poster Đạo đức AI" 
+                         class="poster-portrait">
+                    
+                    <a href="bai6.pdf" class="btn-product" target="_blank">📄 Xem Báo cáo & Cam kết (PDF)</a>
+                </div>
+            </article>
+
+        </section>
+
+        <section id="reflection">
+            <h2>III. Trang Tổng kết (Conclusion)</h2>
+            <div class="card-body" style="background: #fff; border-radius: 8px; padding: 2rem;">
+                <h3>Trải nghiệm & Cảm nhận</h3>
+                <p>
+                    Qua học phần "Nhập môn công nghệ số và trí tuệ nhân tạo", tôi đã chuyển dịch tư duy từ việc chỉ biết "sử dụng" công cụ sang "làm chủ" công cụ. Đặc biệt, việc ứng dụng AI vào chuyên ngành Bán dẫn (như Bài 5) đã giúp tôi thấy rõ tiềm năng to lớn của công nghệ trong việc đơn giản hóa các kiến thức phức tạp.
+                </p>
+                
+                <h3 style="margin-top: 20px;">Kỹ năng quan trọng nhất</h3>
+                <ul>
+                    <li>⭐ <strong>Tư duy phản biện (Critical Thinking):</strong> Luôn kiểm chứng thông tin AI đưa ra.</li>
+                    <li>⭐ <strong>Kỹ năng Prompting:</strong> Biết cách giao tiếp với máy để nhận được kết quả chính xác.</li>
+                    <li>⭐ <strong>Đạo đức số:</strong> Hiểu rõ ranh giới minh bạch và trách nhiệm học thuật.</li>
+                </ul>
+
+                <div style="margin-top: 30px; text-align: center;">
+                    <p>Tự đánh giá mức độ hoàn thành Portfolio:</p>
+                    <h2 style="border: none; font-size: 3rem; color: var(--accent-color);">9.5/10</h2>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Phạm Bá Hưng. Portfolio Học phần Nhập môn Công nghệ số.</p>
+            <p>Email: 25000723@vnu.edu.vn | Khoa học Vật liệu - Công nghệ Bán dẫn</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                window.scrollTo({
+                    top: targetSection.offsetTop - 70, 
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
